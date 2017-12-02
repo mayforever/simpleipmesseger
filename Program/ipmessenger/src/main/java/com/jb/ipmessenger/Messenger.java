@@ -31,7 +31,6 @@ import java.util.Arrays;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JTextPane;
 import javax.swing.table.DefaultTableModel;
 import org.apache.log4j.Logger;
 
@@ -45,11 +44,14 @@ public class Messenger extends javax.swing.JFrame
     private final int[] COL_SIZE = {10,20,20,20};
     public DefaultTableModel modelOnlineTable ;
     private ArrayList<String> pathList;
+    private Logger log = null;
     /**
      * Creates new form Messenger
      */
     public Messenger() {
-                try {
+        log = Logger.getLogger("MESSENGER");
+        log.info("load gui to nimbus design");
+        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -67,9 +69,9 @@ public class Messenger extends javax.swing.JFrame
         }
         initComponents();
         
-        log = Logger.getLogger("MESSENGER");
         
         // jTextPane1.insertIcon ( new ImageIcon ( "C:\\Users\\MIS\\Desktop\\63.png" ) );
+        
         jtMessageBox.setDropTarget(
             new DropTarget(){
                 @Override
@@ -116,7 +118,6 @@ public class Messenger extends javax.swing.JFrame
         
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
-        // jtOnline.setModel(new DefaultTableModel(null ,COL_META));
         pathList = new ArrayList<String>();
         modelOnlineTable = (DefaultTableModel)jtOnline.getModel();
         modelOnlineTable.setRowCount(0);
@@ -392,7 +393,6 @@ public class Messenger extends javax.swing.JFrame
                         hostName = InetAddress.getLocalHost().getHostName();
                         
                         myIp = InetAddress.getLocalHost().getHostAddress();
-        
                     } catch (UnknownHostException ex) {
                         log.error(ex.toString());
                     }
@@ -477,7 +477,6 @@ public class Messenger extends javax.swing.JFrame
         });
     }
     
-    private Logger log = null;
     
     public void clearFileBox(){
         jtFileBox.setText("");

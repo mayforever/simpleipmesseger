@@ -29,7 +29,7 @@ import org.apache.log4j.Logger;
  */
 public class Processor extends com.mayforever.thread.BaseThread{
     
-    public Logger log = null;
+    private Logger log = null;
     
     private ProcessorManager processorManager = null;
     Processor(ProcessorManager processorManager){

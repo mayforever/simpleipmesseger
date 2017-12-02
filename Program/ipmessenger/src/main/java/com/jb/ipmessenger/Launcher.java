@@ -36,12 +36,14 @@ public class Launcher {
     public static org.apache.log4j.Logger log = null;
     public static String ip;
     
-    
+    // private Logger logger = null;
     public Launcher(String args[]) {
         PropertyConfigurator.configure("conf"+File.separator+"log4j.properties");
-        log = org.apache.log4j.Logger.getLogger("MAIN");
+        log = org.apache.log4j.Logger.getLogger("LAUNCHER");
         try {
+            
             ip = InetAddress.getLocalHost().getHostAddress();
+            log.debug("the ip is " + ip );
         } catch (UnknownHostException ex) {
             log.error(ex.toString());
             System.exit(0);
